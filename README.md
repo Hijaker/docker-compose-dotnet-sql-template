@@ -102,7 +102,7 @@ Database connection is configured in `appsettings.Development.json`.
 Environment variables for SQL Server are defined in `docker-compose.yml`:
 
 ```yaml
-SA_PASSWORD: "CONFIGURE_LOCALLY"
+MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?Set a local password}"
 ACCEPT_EULA: "Y"
 ```
 
@@ -110,7 +110,7 @@ Update the connection string in the `.NET API` accordingly:
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Server=sqlserver,1433;Database=MyAppDb;User=sa;Password=CONFIGURE_LOCALLY;"
+  "DefaultConnection": "Server=sqlserver,1433;Database=MyAppDb;User=sa;Password=<set locally>;"
 }
 ```
 

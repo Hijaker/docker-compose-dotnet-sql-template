@@ -10,6 +10,7 @@ services:
      - sqlserver
     environment:
      - ASPNETCORE_ENVIRONMENT=Development
+     - "ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ProductDB;User Id=sa;Password=${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD};Trust Server Certificate=True"
     networks:
      - productnetwork
     restart: on-failure
@@ -17,7 +18,7 @@ services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      SA_PASSWORD: "CONFIGURE_LOCALLY"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD in your environment or local .env file}"
       ACCEPT_EULA: "Y"
     ports:
      - "1433:1433"
